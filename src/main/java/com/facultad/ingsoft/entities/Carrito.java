@@ -65,11 +65,11 @@ public class Carrito {
             return false;
         }
 
-        if (!(detalleCarrito.getCantidad() >= detalleCarrito.getArticulo().getCantidad())) {
+        if (!(detalleCarrito.getCantidad() <= detalleCarrito.getArticulo().getCantidad())) {
             return false;
         }
 
-        if (!(detalleCarrito.getSubtotal() == detalleCarrito.getArticulo().getPrecio())) {
+        if (!(detalleCarrito.getSubtotal() == detalleCarrito.getArticulo().getPrecio() * detalleCarrito.getCantidad())) {
             return false;
         }
         return true;

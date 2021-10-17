@@ -27,6 +27,6 @@ public class Articulo {
     @Builder.Default
     private List<Categoria> categorias = new ArrayList<>();
 
-    @Builder.Default
-    private List<DetalleCarrito> detalleCarritos = new ArrayList<>();
+    //@Builder.Default
+    //private List<DetalleCarrito> detalleCarritos = new ArrayList<>();
 }
