@@ -80,7 +80,7 @@ public class Carrito {
             return false;
         }
 
-        if (!(articulo.getCantidad() > 0)) {
+        if (!(articulo.getCantidad() >= 0)) {
             return false;
         }
 
@@ -103,5 +103,9 @@ public class Carrito {
             throw new Exception("El artículo no es válido");
         }
     }
-
+    void esDetalleCarritoInvalido(DetalleCarrito detalleCarrito) throws Exception {
+        if (!(esDetalleCarritoValido(detalleCarrito))) {
+            throw new Exception("El detalle del carrito no es válido");
+        }
+    }
 }
