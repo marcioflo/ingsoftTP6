@@ -5,7 +5,9 @@ import org.junit.jupiter.api.*;
 public class CarritoTest {
 	Carrito carrito;
 	Articulo articulo;
-
+    DetalleCarrito detalleCarrito;
+	
+	
 	@BeforeEach
 	public void beforeEach(TestInfo testInfo) {
 		System.out.println("Inicia " + testInfo.getDisplayName());
@@ -50,7 +52,7 @@ public class CarritoTest {
     				denominacion("Zapatillas nike").
     				descripcion("Zapatillas para mujer talle 38").
     				precio(4000).build();
-    	DetalleCarrito detalleCarrito = DetalleCarrito.builder().
+    	detalleCarrito = DetalleCarrito.builder().
     									articulo(articulo).
     									cantidad(2).subtotal(8000).
     									build();
@@ -68,7 +70,7 @@ public class CarritoTest {
 				denominacion("Zapatillas nike").
 				descripcion("Zapatillas para mujer talle 38").
 				precio(4000).build();
-		DetalleCarrito detalleCarrito = DetalleCarrito.builder().
+		detalleCarrito = DetalleCarrito.builder().
 										articulo(articulo).
 										cantidad(7).subtotal(8000).
 										build();
@@ -93,7 +95,7 @@ public class CarritoTest {
     				denominacion("Zapatillas nike").
     				descripcion("Zapatillas para mujer talle 38").
     				precio(4000).build();
-    	DetalleCarrito detalleCarrito = DetalleCarrito.builder().
+    	detalleCarrito = DetalleCarrito.builder().
     									articulo(articulo).
     									build();
     	
