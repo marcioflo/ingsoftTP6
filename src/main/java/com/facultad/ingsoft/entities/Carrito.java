@@ -14,98 +14,119 @@ import java.util.List;
 @Builder
 public class Carrito {
 
-    private	long numero;
 
-    private	String fecha;
+	private long numero;
 
-    private	int total;
+	private String fecha;
 
-    @Builder.Default
-    private List<DetalleCarrito> detalleCarritos = new ArrayList<>();
+	private int total;
 
-    private Cliente cliente;
+	@Builder.Default
+	private List<DetalleCarrito> detalleCarritos = new ArrayList<>();
 
-    boolean esCarritoValidoParaCompra(Carrito carrito) {
-        if (carrito.getCliente() == null) {
-            return  false;
-        }
+	private Cliente cliente;
 
-        if (!(esCarritoValido(carrito))) {
-            return false;
-        }
-        return true;
-    }
+	boolean esCarritoValidoParaCompra(Carrito carrito) {
+		if (carrito.getCliente() == null) {
+			return false;
+		}
 
-    boolean esCarritoValido(Carrito carrito) {
-        if (carrito.detalleCarritos.isEmpty()) {
-            return false;
-        }
+		if (!(esCarritoValido(carrito))) {
+			return false;
+		}
+		return true;
+	}
 
-        for (DetalleCarrito detalleCarrito : carrito.detalleCarritos) {
-            if (detalleCarrito == null) {
-                return false;
-            }
-            if (!(esDetalleCarritoValido(detalleCarrito))) {
-                return  false;
-            }
-        }
-        return true;
-    }
+	boolean esCarritoValido(Carrito carrito) {
+		if (carrito.detalleCarritos.isEmpty()) {
+			return false;
+		}
 
-    boolean esDetalleCarritoValido(DetalleCarrito detalleCarrito) {
-        if (detalleCarrito.getArticulo() == null) {
-            return false;
-        }
+		for (DetalleCarrito detalleCarrito : carrito.detalleCarritos) {
+			if (detalleCarrito == null) {
+				return false;
+			}
+			if (!(esDetalleCarritoValido(detalleCarrito))) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-        if (!esArticuloValido(detalleCarrito.getArticulo())) {
-            return false;
-        }
+	boolean esDetalleCarritoValido(DetalleCarrito detalleCarrito) {
+		if (detalleCarrito.getArticulo() == null) {
+			return false;
+		}
 
-        if (!(detalleCarrito.getCantidad() > 0)) {
-            return false;
-        }
+		if (!esArticuloValido(detalleCarrito.getArticulo())) {
+			return false;
+		}
 
-        if (!(detalleCarrito.getCantidad() <= detalleCarrito.getArticulo().getCantidad())) {
-            return false;
-        }
+		if (!(detalleCarrito.getCantidad() > 0)) {
+			return false;
+		}
 
-        if (!(detalleCarrito.getSubtotal() == detalleCarrito.getArticulo().getPrecio() * detalleCarrito.getCantidad())) {
-            return false;
-        }
-        return true;
-    }
+		if (!(detalleCarrito.getCantidad() <= detalleCarrito.getArticulo().getCantidad())) {
+			return false;
+		}
 
-    public boolean esArticuloValido(Articulo articulo) {
-        if (!articulo.isActivo()) {
-            return false;
-        }
+		if (!(detalleCarrito.getSubtotal() == detalleCarrito.getArticulo().getPrecio() * detalleCarrito.getCantidad())) {
+			return false;
+		}
+		return true;
+	}
 
-        if (!(articulo.getCantidad() >= 0)) {
-            return false;
-        }
+	public boolean esArticuloValido(Articulo articulo) {
+		if (!articulo.isActivo()) {
+			return false;
+		}
 
-        if (isStringEmpty(articulo.getDenominacion())) {
-            return false;
-        }
+		if (!(articulo.getCantidad() > 0)) {
+			return false;
+		}
 
-        if (isStringEmpty(articulo.getDescripcion())) {
-            return false;
-        }
-        return  true;
-    }
+		if (isStringEmpty(articulo.getDenominacion())) {
+			return false;
+		}
 
-    boolean  isStringEmpty(String s) {
-        return s == null || s.isBlank();
-    }
+		if (isStringEmpty(articulo.getDescripcion())) {
+			return false;
+		}
+		return true;
+	}
 
-    void esArticuloInvalido(Articulo articulo) throws Exception {
-        if (!(esArticuloValido(articulo))) {
-            throw new Exception("El artículo no es válido");
-        }
-    }
+	boolean isStringEmpty(String s) {
+		return s == null || s.isBlank();
+	}
+
+	void esArticuloInvalido(Articulo articulo) throws Exception {
+		if (!(esArticuloValido(articulo))) {
+			throw new Exception("El artículo no es válido");
+		}
+	}
+	
+	void superaStockCantidadElegida(List<DetalleCarrito> detalleCarritos) throws Exception {
+		for (DetalleCarrito detalleCarrito : detalleCarritos) {
+			if (!(esDetalleCarritoValido(detalleCarrito))) {
+				throw new Exception("La cantidad elegida de "+detalleCarrito.getArticulo().getDenominacion()+" es mayor al stock existente");
+			}	
+		}		
+	}
+	
+	void calcTotal () {
+		int suma=0;
+		for(DetalleCarrito detalleCarrito:this.detalleCarritos) {
+			suma += detalleCarrito.getSubtotal();
+		}
+		this.setTotal(suma);
+	}
+
+
     void esDetalleCarritoInvalido(DetalleCarrito detalleCarrito) throws Exception {
         if (!(esDetalleCarritoValido(detalleCarrito))) {
             throw new Exception("El detalle del carrito no es válido");
         }
     }
+
+
 }
