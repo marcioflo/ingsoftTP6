@@ -14,19 +14,19 @@ import java.util.List;
 @Builder
 public class Articulo {
 
-    private String denominacion;
+	private String denominacion;
 
-    private String descripcion;
+	private String descripcion;
 
-    private int cantidad;
+	private int cantidad;
 
-    private int precio;
+	private int precio;
 
-    private boolean activo;
+	private boolean activo;
 
-    @Builder.Default
-    private List<Categoria> categorias = new ArrayList<>();
+	@Builder.Default
+	private List<Categoria> categorias = new ArrayList<>();
 
-    //@Builder.Default
-    //private List<DetalleCarrito> detalleCarritos = new ArrayList<>();
+	// @Builder.Default
+	// private List<DetalleCarrito> detalleCarritos = new ArrayList<>();
 }

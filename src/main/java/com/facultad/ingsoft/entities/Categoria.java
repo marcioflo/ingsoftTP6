@@ -14,8 +14,8 @@ import java.util.List;
 @Builder
 public class Categoria {
 
-    private String denominacion;
+	private String denominacion;
 
-    //@Builder.Default
-    //private List<Articulo> articulo = new ArrayList<>();
+	// @Builder.Default
+	// private List<Articulo> articulo = new ArrayList<>();
 }

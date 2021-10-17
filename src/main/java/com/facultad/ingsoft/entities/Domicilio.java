@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Domicilio {
 
-    private String nombreCalle;
+	private String nombreCalle;
 
-    private int numero;
+	private int numero;
 
-    private Cliente cliente;
+	private Cliente cliente;
 }

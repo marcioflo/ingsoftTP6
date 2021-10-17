@@ -11,11 +11,13 @@ import lombok.NoArgsConstructor;
 @Data
 public class DetalleCarrito {
 
-    private int cantidad;
+	private int cantidad;
 
-    private int subtotal;
+	private int subtotal;
 
-    private Articulo articulo;
+	private Articulo articulo;
 
-    private Carrito carrito;
+	//private Carrito carrito;
+	
+
 }
