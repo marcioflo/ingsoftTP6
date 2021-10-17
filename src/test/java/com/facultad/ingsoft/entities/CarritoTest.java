@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 
 public class CarritoTest {
 
+
     Carrito carrito;
     Articulo articulo;
     DetalleCarrito detalleCarrito;
@@ -107,6 +108,21 @@ public class CarritoTest {
     	Assertions.assertFalse(carrito.esDetalleCarritoValido(detalleCarrito));
     }
 
+
+	
+	@Test
+	public void testCalcTotal() {
+		int esperado=30000;
+		
+		carrito = new Carrito();
+		carrito.getDetalleCarritos().add(DetalleCarrito.builder().subtotal(8000).build());
+		carrito.getDetalleCarritos().add(DetalleCarrito.builder().subtotal(15000).build());
+		carrito.getDetalleCarritos().add(DetalleCarrito.builder().subtotal(7000).build());
+		carrito.calcTotal();
+		Assertions.assertEquals(esperado, carrito.getTotal());
+	}
+	
+
     //Test (1) Juan Ignacio Barranco realizando cobertura de  "Detalle de Carrito ES VÁLIDO"
     @Test
     public void testDetalleCarritoInvalidoCheckException(){
@@ -134,19 +150,6 @@ public class CarritoTest {
     }
 
 
-	
-	@Test
-	public void testCalcTotal() {
-		int esperado=30000;
-		
-		carrito = new Carrito();
-		carrito.getDetalleCarritos().add(DetalleCarrito.builder().subtotal(8000).build());
-		carrito.getDetalleCarritos().add(DetalleCarrito.builder().subtotal(15000).build());
-		carrito.getDetalleCarritos().add(DetalleCarrito.builder().subtotal(7000).build());
-		carrito.calcTotal();
-		Assertions.assertEquals(esperado, carrito.getTotal());
-	}
-	
 
 }
 

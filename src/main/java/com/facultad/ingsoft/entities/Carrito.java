@@ -14,6 +14,7 @@ import java.util.List;
 @Builder
 public class Carrito {
 
+
 	private long numero;
 
 	private String fecha;
@@ -119,7 +120,13 @@ public class Carrito {
 		}
 		this.setTotal(suma);
 	}
-	
-	
+
+
+    void esDetalleCarritoInvalido(DetalleCarrito detalleCarrito) throws Exception {
+        if (!(esDetalleCarritoValido(detalleCarrito))) {
+            throw new Exception("El detalle del carrito no es válido");
+        }
+    }
+
 
 }
