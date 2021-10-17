@@ -14,16 +14,16 @@ import java.util.List;
 @Builder
 public class Cliente {
 
-    private String nombre;
+	private String nombre;
 
-    private String apellido;
+	private String apellido;
 
-    private String dni;
+	private String dni;
 
-    private Domicilio domicilio;
+	private Domicilio domicilio;
 
-    private boolean activo;
+	private boolean activo;
 
-    @Builder.Default
-    private List<Carrito> carritos = new ArrayList<>();
+	@Builder.Default
+	private List<Carrito> carritos = new ArrayList<>();
 }
