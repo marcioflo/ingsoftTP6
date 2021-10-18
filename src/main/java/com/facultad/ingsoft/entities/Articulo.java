@@ -24,9 +24,9 @@ public class Articulo {
 
 	private boolean activo;
 
-	@Builder.Default
-	private List<Categoria> categorias = new ArrayList<>();
+	//@Builder.Default
+	//private List<Categoria> categorias = new ArrayList<>();
 
-	// @Builder.Default
-	// private List<DetalleCarrito> detalleCarritos = new ArrayList<>();
+	//@Builder.Default
+	//private List<DetalleCarrito> detalleCarritos = new ArrayList<>();
 }

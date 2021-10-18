@@ -16,6 +16,6 @@ public class Categoria {
 
 	private String denominacion;
 
-	// @Builder.Default
-	// private List<Articulo> articulo = new ArrayList<>();
+	//@Builder.Default
+	//private List<Articulo> articulo = new ArrayList<>();
 }
